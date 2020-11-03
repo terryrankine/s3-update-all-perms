@@ -2,16 +2,16 @@
 
 
 ## deps
-json
-aws-boto3
+* json
+* aws-boto3
 
 ## code
-iterate all buckets
-save current permissions
-add cross-account access in bucket permissions
+1. iterate all buckets
+1. save current permissions
+1. add cross-account access in bucket permissions
 
 ## todo
-rollback
-detect if run already (perms exist)
+* rollback
+* detect if run already (perms exist)
 
 ## 
