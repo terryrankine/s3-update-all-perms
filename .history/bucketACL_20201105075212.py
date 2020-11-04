@@ -82,8 +82,8 @@ def processSharing(shareID):
 
     """
     template = Template('''Grantee': {'DisplayName': '$accountName', 'ID': '$accountID', 'Type': 'CanonicalUser'}, 'Permission': 'READ'}}]''')
-    accountName = "$getme"
-    accountID = "$fillme"
+    accountName = "aws.digital.wpl-wrk-cds-np"
+    accountID = "77b879c68a62663e697b77d7254d84f78ede2189764ffb8026f48b8db1c83827"
 
     for currentBucket in buckets:
         bucketName = currentBucket["Name"]
