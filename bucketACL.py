@@ -108,7 +108,7 @@ def processSharing(shareID):
     """
 
 
-def processBuckets(destAccountNum):
+def processBuckets(destAccountNum, sourceAccountNum):
 
     for currentBucket in buckets:
         bucketName = currentBucket["Name"]
@@ -129,9 +129,9 @@ def processBuckets(destAccountNum):
 
         # backup existing or 'no-policy'
         try:
-            if not os.path.exists(destAccountNum):
-                os.mkdir(destAccountNum)
-            with open(os.path.join(destAccountNum, bucketName), 'w') as f:
+            if not os.path.exists(sourceAccountNum):
+                os.mkdir(sourceAccountNum)
+            with open(os.path.join(sourceAccountNum, bucketName), 'w') as f:
                 if orig_bucket_policy == '':
                     f.write("no-policy")
                 else:
@@ -168,15 +168,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Add Permissions to ALL your S3 buckets')
     parser.add_argument('-d', '--destAccount',
                         help='Account to grant permisssion to')
-    parser.add_argument('-s', '--crossAccountShare',
+    parser.add_argument('-s', '--sourceAccount',
+                        help='Account number of the source account')
+    parser.add_argument('-c', '--crossAccountShare',
                         help='fullID to enable cross account share')
 
     args = parser.parse_args()
 
     # if args.crossAccountShare:
     #    processSharing(args.crossAccountShare)
-    if args.destAccount:
-        processBuckets(args.destAccount)
+    if args.destAccount and args.sourceAccount:
+        processBuckets(args.destAccount, args.sourceAccount)
 
 
 def test_newPolicy():
